@@ -3,7 +3,7 @@
 // @author        barklan
 // @namespace     namespace_barklan
 // @description   Select YouTube resolution automatically.
-// @version       2022.06.07
+// @version       1.0.1
 // @match         https://www.youtube.com/*
 // @noframes
 // @grant         none
@@ -53,9 +53,6 @@
     "small",
     "tiny",
   ];
-
-  let doc = document,
-    win = window;
 
   // ID of the most recently played video
   let recentVideo = "";
@@ -136,7 +133,7 @@
   // Set resolution, but only when API is ready (it should normally already be ready)
   function setResOnReady(ytPlayer, resolutionList) {
     if (ytPlayer.getPlaybackQuality === undefined) {
-      win.setTimeout(setResOnReady, 100, ytPlayer, resolutionList);
+      window.setTimeout(setResOnReady, 100, ytPlayer, resolutionList);
     } else {
       let framerateUpdate = false;
 
@@ -166,8 +163,8 @@
 
   function main() {
     let ytPlayer =
-      doc.getElementById("movie_player") ||
-      doc.getElementsByClassName("html5-video-player")[0];
+      document.getElementById("movie_player") ||
+      document.getElementsByClassName("html5-video-player")[0];
     let ytPlayerUnwrapped = unwrapElement(ytPlayer);
 
     if (changeResolution && setResolutionEarly && ytPlayerUnwrapped) {
@@ -175,16 +172,16 @@
     }
 
     if (changeResolution) {
-      win.addEventListener(
+      window.addEventListener(
         "loadstart",
         function (e) {
-          if (!(e.target instanceof win.HTMLMediaElement)) {
+          if (!(e.target instanceof window.HTMLMediaElement)) {
             return;
           }
 
           ytPlayer =
-            doc.getElementById("movie_player") ||
-            doc.getElementsByClassName("html5-video-player")[0];
+            document.getElementById("movie_player") ||
+            document.getElementsByClassName("html5-video-player")[0];
           ytPlayerUnwrapped = unwrapElement(ytPlayer);
           if (ytPlayerUnwrapped) {
             debugLog("Loaded new video");
@@ -198,11 +195,11 @@
     }
 
     // This will eventually be changed to use the "once" option, but I want to keep a large range of browser support.
-    win.removeEventListener("yt-navigate-finish", main, true);
+    window.removeEventListener("yt-navigate-finish", main, true);
   }
 
   main();
   // Youtube doesn't load the page immediately in new version so you can watch before waiting for page load
   // But we can only set resolution until the page finishes loading
-  win.addEventListener("yt-navigate-finish", main, true);
+  window.addEventListener("yt-navigate-finish", main, true);
 })();
