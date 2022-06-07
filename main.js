@@ -3,7 +3,7 @@
 // @author        barklan
 // @namespace     namespace_barklan
 // @description   Select YouTube resolution automatically.
-// @version       1.0.1
+// @version       1.0.2
 // @match         https://www.youtube.com/*
 // @noframes
 // @grant         none
