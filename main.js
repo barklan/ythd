@@ -3,7 +3,7 @@
 // @author        barklan
 // @namespace     namespace_barklan
 // @description   Select YouTube resolution automatically.
-// @version       1.0.2
+// @version       1.0.3
 // @match         https://www.youtube.com/*
 // @noframes
 // @grant         none
@@ -11,8 +11,6 @@
 
 (function () {
   "use strict";
-
-  // --- SETTINGS -------
 
   // Target Resolution to always set to. If not available, the next best resolution will be used.
   const changeResolution = true;
@@ -61,14 +59,6 @@
     if (DEBUG) {
       console.log("YTHD | " + message);
     }
-  }
-
-  // Used only for compatability with webextensions version of greasemonkey
-  function unwrapElement(el) {
-    if (el && el.wrappedJSObject) {
-      return el.wrappedJSObject;
-    }
-    return el;
   }
 
   // Get video ID from the currently loaded video (which might be different than currently loaded page)
@@ -165,10 +155,9 @@
     let ytPlayer =
       document.getElementById("movie_player") ||
       document.getElementsByClassName("html5-video-player")[0];
-    let ytPlayerUnwrapped = unwrapElement(ytPlayer);
 
-    if (changeResolution && setResolutionEarly && ytPlayerUnwrapped) {
-      setResOnReady(ytPlayerUnwrapped, resolutions);
+    if (changeResolution && setResolutionEarly && ytPlayer) {
+      setResOnReady(ytPlayer, resolutions);
     }
 
     if (changeResolution) {
@@ -182,11 +171,10 @@
           ytPlayer =
             document.getElementById("movie_player") ||
             document.getElementsByClassName("html5-video-player")[0];
-          ytPlayerUnwrapped = unwrapElement(ytPlayer);
-          if (ytPlayerUnwrapped) {
+          if (ytPlayer) {
             debugLog("Loaded new video");
             if (changeResolution) {
-              setResOnReady(ytPlayerUnwrapped, resolutions);
+              setResOnReady(ytPlayer, resolutions);
             }
           }
         },
