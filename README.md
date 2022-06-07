@@ -1,2 +1,3 @@
 # ythd
-Select a youtube resolution and resize the player automatically.
+
+[Original source](https://greasyfork.org/en/scripts/23661-youtube-hd).
