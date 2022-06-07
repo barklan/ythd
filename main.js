@@ -193,13 +193,13 @@
         true
       );
     }
-
-    // This will eventually be changed to use the "once" option, but I want to keep a large range of browser support.
-    window.removeEventListener("yt-navigate-finish", main, true);
   }
 
   main();
   // Youtube doesn't load the page immediately in new version so you can watch before waiting for page load
   // But we can only set resolution until the page finishes loading
-  window.addEventListener("yt-navigate-finish", main, true);
+  window.addEventListener("yt-navigate-finish", main, {
+    once: true,
+    useCapture: true,
+  });
 })();
