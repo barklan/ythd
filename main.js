@@ -3,7 +3,7 @@
 // @author        barklan
 // @namespace     namespace_barklan
 // @description   Select YouTube resolution automatically.
-// @version       1.0.3
+// @version       1.0.4
 // @match         https://www.youtube.com/*
 // @noframes
 // @grant         none
@@ -14,7 +14,7 @@
 
   // Target Resolution to always set to. If not available, the next best resolution will be used.
   const changeResolution = true;
-  const targetRes = "hd1080";
+  const targetRes = "hd2160";
   // Choices for targetRes are currently:
   //   "highres" >= ( 8K / 4320p / QUHD  )
   //   "hd2880"   = ( 5K / 2880p /  UHD+ )
@@ -30,7 +30,7 @@
   // If flushBuffer is false, then the first second or so of the video may not always be the desired resolution.
   //   If true, then the entire video will be guaranteed to be the target resolution, but there may be
   //   a very small additional delay before the video starts if the buffer needs to be flushed.
-  const flushBuffer = true;
+  const flushBuffer = false;
 
   // Tries to set the resolution as early as possible.
   // This might cause issues on youtube polymer layout, so disable if videos fail to load.
