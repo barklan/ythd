@@ -3,7 +3,7 @@
 // @author        barklan
 // @namespace     namespace_barklan
 // @description   Select YouTube resolution automatically.
-// @version       1.0.5
+// @version       1.0.6
 // @match         https://www.youtube.com/*
 // @noframes
 // @grant         none
@@ -14,7 +14,7 @@
 
   // Target Resolution to always set to. If not available, the next best resolution will be used.
   const changeResolution = true;
-  const targetRes = "hd1080";
+  const targetRes = "hd2160";
   // Choices for targetRes are currently:
   //   "highres" >= ( 8K / 4320p / QUHD  )
   //   "hd2880"   = ( 5K / 2880p /  UHD+ )
